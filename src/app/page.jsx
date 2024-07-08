@@ -1,10 +1,9 @@
 'use client'
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { AiFillSun } from "react-icons/ai";
 import { RiMoonFill } from "react-icons/ri";
-import './component/oladele.module.css'
 
 export default function Home() {
   const [tasks, setTasks] = useState([
@@ -16,7 +15,13 @@ export default function Home() {
   ]);
 
   const [newTaskText, setNewTaskText] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() =>{
+    if(typeof window !== "undefined"){
+      const saved = localStorage.getItem("darkMode")
+      return saved === "true"
+    }
+    return false
+  })
 
   const toggleTaskCompletion = (taskId) => {
     setTasks((prevTasks) =>
@@ -47,9 +52,13 @@ export default function Home() {
     }
   };
 
+  useEffect(()=>{
+    localStorage.setItem("darkMode", isDarkMode)
+  }, [isDarkMode])
+
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
-  };
+  }
 
   return (
     <main className={`flex min-h-screen flex-col items-center justify-start p-0 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} relative`}>
@@ -113,7 +122,7 @@ export default function Home() {
                   {task.text}
                 </label>
                 <button
-                  className="text-red-500 font-bold"
+                  className="text-red-500 font-bold text-lg"
                   onClick={() => removeTask(task.id)}
                 >
                   <RxCross2 />
