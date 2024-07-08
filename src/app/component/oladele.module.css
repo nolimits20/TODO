@@ -1,0 +1,21 @@
+.custom-checkbox + label span {
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.custom-checkbox:checked + label span {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.custom-checkbox:checked + label span::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
