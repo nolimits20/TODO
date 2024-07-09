@@ -105,11 +105,11 @@ export default function Home() {
         <div className="flex mt-4 w-full sm:w-[500px]">
           <input
             type="text"
-            className={`w-full sm:w-[400px] h-12 bg-white ${
+            className={`w-full sm:w-[400px] h-12 ${
               isDarkMode
                 ? "bg-[hsl(235,24%,19%)] text-[hsl(234,11%,52%)]"
-                : "text-[hsl(234,11%,52%)]"
-            } rounded-l-lg shadow-lg placeholder-[hsl(234,11%,52%) font-bold] pl-4 outline-none`}
+                : "bg-white text-[hsl(234,11%,52%)]"
+            } rounded-l-lg shadow-lg placeholder-[hsl(234,11%,52%)] font-bold pl-4 outline-none`}
             placeholder="Create a new todo... "
             value={newTaskText}
             onChange={(e) => setNewTaskText(e.target.value)}
@@ -127,10 +127,10 @@ export default function Home() {
       {/* Task List */}
       <div className="w-full flex justify-center mt-4 sm:mt-[20px] relative z-10 px-4 sm:px-0">
         <div
-          className={`bg-white  ${
+          className={`${
             isDarkMode
               ? "bg-[hsl(235,24%,19%)] text-[hsl(234,11%,52%)]"
-              : "text-[hsl(234,11%,52%)]"
+              : "bg-white text-[hsl(234,11%,52%)]"
           } w-full sm:w-[500px] shadow-lg rounded-lg p-3 font-bold`}
         >
           <ul>
@@ -191,8 +191,8 @@ export default function Home() {
             </button>
           </div>
           <div
-            className={`flex justify-center mt-4 sm:mt-0 bg-white sm:bg-transparent ${
-              isDarkMode ? "bg-gray-900 text-white" : ""
+            className={`flex justify-center mt-4 sm:mt-0 bg-transparent ${
+              isDarkMode ? "text-white" : ""
             } rounded-lg p-2 sm:p-0`}
           >
             <button
